@@ -1,28 +1,36 @@
-import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import Home from './components/home';
-import Entry from './components/entry';
-import LogOut from './components/logOut';
-import LogIn from './components/logIn';
-import Roster from './components/roster';
+import React, { useState, useMemo } from 'react';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import UserContext from './components/userContext';
+import Home from './pages/home';
+import Entry from './pages/entry';
+import LogOut from './pages/logOut';
+import Portal from './pages/portal';
+import Roster from './pages/roster';
 import './App.css';
+import LogIn from './pages/logIn';
 
-class App extends Component {
-    
-  render() {
+const App = () => {
+  
+  const [user, setUser] = useState(null);
 
+  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
+     
     return (
-      <div className="App">
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/login' component={LogIn} />
-          <Route exact path='/roster' component={Roster} />
-          <Route exact path='/logout' component={LogOut} />
-          <Route exact path='/entry' component={Entry} />
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route exact path='/' component={Home} />
+          <UserContext.Provider value={value}>
+            <Route exact path='/login' component={LogIn} />
+            <Route exact path='/portal' component={Portal} />
+            <Route exact path='/roster' component={Roster} />
+            <Route exact path='/logout' component={LogOut} />
+            <Route exact path='/entry' component={Entry} />
+          </UserContext.Provider>
         </Switch>
       </div>
-    );
-  }
-};
+      </Router>
+    );  
+  };
 
 export default App;

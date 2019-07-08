@@ -11,7 +11,7 @@ router.post("/login", passport.authenticate("local"), function (req, res) {
   console.log("Back in the redirect!");
   console.log("Req.user is ", req.user);
   console.log(req.session);
-res.status(200).send("user authenticated!");   
+res.status(200).send(req.user);   
 });
 
 // route to sign up a user

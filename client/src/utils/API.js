@@ -13,6 +13,12 @@ export default {
   signUp: function(userData) {
     return axios.post("/api/signup/", userData);
   },
+  saveUser: function(userData) {
+    return axios.post("/api/users/", userData);
+  },
+  deleteUser: function(id) {
+    return axios.delete("/api/users/" + id);
+  },
   // Logs a user in
   logIn: function(loginData) {
     return axios.post("/api/login/", loginData);
