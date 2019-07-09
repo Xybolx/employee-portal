@@ -98,7 +98,6 @@ export const HomeNav = () => {
                     >Home
                         </NavLink>
                     <NavLink
-                        style={logOutNavStyle}
                         className={
                             window.location.pathname === "/login"
                                 ? "nav-item nav-link active"

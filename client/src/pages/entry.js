@@ -5,7 +5,7 @@ import { useForm } from '../components/useForm';
 import { Label, Input, Select, FormBtn } from '../components/form';
 import Title from '../components/title';
 import { PortalNav } from '../components/navbar';
-import UseListeners from '../components/listeners/useListeners';
+import UseIdleTimer from '../components/windowEvents/useIdleTimer';
 
 const Entry = () => {
 
@@ -51,7 +51,7 @@ const Entry = () => {
     return (
         <div>
             <PortalNav />
-            <UseListeners />
+            <UseIdleTimer />
             <div className="col-md-6 offset-md-3">
             <Title />
             <h2>New Employee Info</h2>

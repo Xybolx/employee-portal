@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import WEL from './WEL';
 
-const UseListeners = () => {
+const UseIdleTimer = () => {
 
     const [idleTimer, setIdleTimer] = useState(600);
 
@@ -34,4 +34,4 @@ const UseListeners = () => {
     );
 };
 
-export default UseListeners;
+export default UseIdleTimer;

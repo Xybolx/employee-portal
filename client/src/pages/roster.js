@@ -4,7 +4,7 @@ import moment from 'moment';
 import API from '../utils/API';
 import Title from '../components/title';
 import { PortalNav } from '../components/navbar';
-import UseListeners from '../components/listeners/useListeners';
+import UseIdleTimer from '../components/windowEvents/useIdleTimer';
 import { 
     UserCardHeader, 
     UserCardItem, 
@@ -45,7 +45,7 @@ const Roster = () => {
     return (
         <div>
             <PortalNav />
-            <UseListeners />
+            <UseIdleTimer />
             {users && (
                 <div className="users container col-md-6 offset-md-3">
                     <Title />
