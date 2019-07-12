@@ -1,0 +1,30 @@
+form {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+.submit {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .btn-dark:enabled {
+    background-color: darkblue;
+    border: solid yellow;
+    color: yellow;
+  }
+  
+  .btn-dark:disabled {
+    background-color: rgba(2, 2, 70, 0.726);
+    border: solid red;
+    color: darkred;
+  }
+  
+  .input:invalid {
+    border: solid red;
+  }
+  
+  .input:valid {
+    border: solid green;
+  }
+

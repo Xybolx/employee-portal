@@ -1,4 +1,20 @@
 import React from 'react';
+import { useState } from 'react';
+import './form.css';
+
+export const useForm = (initialValues) => {
+    const [values, setValues] = useState(initialValues);
+
+    return [
+        values,
+        ev => {
+            setValues({
+                ...values,
+                [ev.target.name]: ev.target.value
+            });
+        }
+    ];
+};
 
 export const Label = props => {
   return (
@@ -28,8 +44,8 @@ export const Select = props => {
 
 export const FormBtn = props => {
   return (
-    <button {...props} className="btn btn-dark btn-block">
-      {props.children}
+    <button {...props} className="submit btn btn-dark btn-block">
+     {props.children}
     </button>
   );
 };

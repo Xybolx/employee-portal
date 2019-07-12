@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import UserContext from '../components/userContext';
+import UserContext from '../components/context/userContext';
 import API from '../utils/API';
-import { useForm } from '../components/useForm';
-import Title from '../components/title';
+import Title from '../components/title/title';
 import { HomeNav } from '../components/navbar';
-import { Label, Input, FormBtn } from '../components/form';
+import { Label, Input, FormBtn, useForm } from '../components/form';
+import { Col } from '../components/grid';
 
 const LogIn = () => {
 
@@ -49,9 +49,9 @@ const LogIn = () => {
 
         <div>
             <HomeNav />
-            <div className="col-md-6 offset-md-3">
+            <Col id="loginTitle">
                 <Title />
-                <h2>Log In</h2>
+                <h2><i className="fas fa-sign-in-alt"></i> Login</h2>
                 <form className="text-left" onSubmit={handleFormSubmit}>
                     <Label
                         htmlFor="email">
@@ -82,10 +82,10 @@ const LogIn = () => {
                         onClick={userSet}
                         disabled={
                             !(values.email && values.password)}>
-                        Login
+                        <i className="fas fa-sign-in-alt"></i> Login
                 </FormBtn>
                 </form>
-            </div>
+            </Col>
         </div>
     );
 };

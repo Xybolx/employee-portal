@@ -14,7 +14,10 @@ export default {
     return axios.post("/api/signup/", userData);
   },
   saveUser: function(userData) {
-    return axios.post("/api/users/", userData);
+    return axios.post("/api/users", userData);
+  },
+  editUser: function(id) {
+    return axios.put("/api/users/" + id);
   },
   deleteUser: function(id) {
     return axios.delete("/api/users/" + id);

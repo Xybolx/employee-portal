@@ -1,8 +1,8 @@
 import React from 'react';
 import Particles from 'react-particles-js';
+import './title.css';
 
 const Title = () => {
-
     return (
         <h1>
             <Particles
@@ -24,18 +24,12 @@ const Title = () => {
                         move: {
                             speed: 3,
                             out_mode: "out",
-                            direction: "bottom",
+                            direction: "right",
                             bounce: false
                         },
                         shape: {
                             type:
-                                "image",
-                            image:
-                            {
-                                src: "super-logo.png",
-                                height: 30,
-                                width: 40
-                            }
+                                "star",
                         },
                         color: {
                             value: "#282c34"

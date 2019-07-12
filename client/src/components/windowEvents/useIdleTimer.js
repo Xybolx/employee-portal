@@ -9,9 +9,7 @@ const UseIdleTimer = () => {
         const idleInterval = setInterval(() => {
             setIdleTimer(idleTimer - 1)
         }, 1000);
-
         return () => clearInterval(idleInterval);
-
     }, [idleTimer]);
 
     WEL.useMouseMove(ev => setIdleTimer(600));

@@ -11,7 +11,7 @@ router.post("/login", passport.authenticate("local"), function (req, res) {
   console.log("Back in the redirect!");
   console.log("Req.user is ", req.user);
   console.log(req.session);
-res.status(200).send(req.user);   
+res.status(200).send(req.user.firstName + "has been authenticated!");   
 });
 
 // route to sign up a user
@@ -24,7 +24,9 @@ router.post("/signup", function (req, res) {
     username: req.body.username,
     password: req.body.password,
     position: req.body.position,
-    permissions: req.body.permissions
+    permissions: req.body.permissions,
+    date: req.body.date,
+    phone: req.body.phone
   }).then(function () {
     res.redirect(307, "/api/login");
   }).catch(function (err) {

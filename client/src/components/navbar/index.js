@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
-import UserContext from '../userContext';
+import UserContext from '../context/userContext';
 import { NavLink } from 'react-router-dom';
+import Clock from '../clock/clock';
+import './navbar.css';
 
 export const PortalNav = () => {
 
@@ -14,13 +16,14 @@ export const PortalNav = () => {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg bg-light">
+        <nav className="navbar navbar-expand-lg">
             <NavLink className="navbar-brand" to="/logout">
                 <img src="super-logo.png" width="40" height="30" className="d-inline-block align-top" alt="" />
                 Super, inc.
-                    </NavLink>
+                <Clock />
+            </NavLink>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-p9aMOEr4WSEJ65jCyqU9AxrJtgK70wI7qzG7BdOGlSDthHcL" width="30" height="30" className="d-inline-block align-top" alt="" /></span>
+                <span className="navbar-toggler-icon fas fa-bars d-inline-block align-top"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
@@ -31,7 +34,7 @@ export const PortalNav = () => {
                                 : "nav-item nav-link"
                         }
                         to="/portal"
-                    >Portal
+                    ><i className="fas fa-door-open"></i> Portal
                         </NavLink>
                     <NavLink
                         className={
@@ -41,7 +44,7 @@ export const PortalNav = () => {
                         }
                         style={adminBlockStyle}
                         to="/entry"
-                    >Entry
+                    ><i className="far fa-id-card"></i> Entry
                         </NavLink>
                     <NavLink
                         className={
@@ -50,7 +53,7 @@ export const PortalNav = () => {
                                 : "nav-item nav-link"
                         }
                         to="/roster"
-                    >Roster
+                    ><i className="far fa-eye"></i> Roster
                         </NavLink>
                     <NavLink
                         className={
@@ -59,9 +62,103 @@ export const PortalNav = () => {
                                 : "nav-item nav-link"
                         }
                         to="/logout"
-                    >Logout
+                    ><i className="fas fa-sign-out-alt"></i> Logout
                         </NavLink>
                 </div>
+            </div>
+        </nav>
+    );
+};
+
+export const EditNav = () => {
+
+    const { user } = useContext(UserContext);
+
+    const adminBlockStyle = {
+        ...user.permissions
+            === 'Admin'
+            ? { display: 'block' }
+            : { display: 'none' }
+    };
+
+    return (
+        <nav className="navbar navbar-expand-lg">
+            <NavLink className="navbar-brand" to="/logout">
+                <img src="super-logo.png" width="40" height="30" className="d-inline-block align-top" alt="" />
+                Super, inc.
+                <Clock />
+            </NavLink>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon fas fa-bars d-inline-block align-top"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div className="navbar-nav">
+                    <NavLink
+                        className={
+                            window.location.pathname === "/portal"
+                                ? "nav-item nav-link active"
+                                : "nav-item nav-link"
+                        }
+                        to="/portal"
+                    ><i className="fas fa-door-open"></i> Portal
+                        </NavLink>
+                    <NavLink
+                        className={
+                            window.location.pathname === "/entry"
+                                ? "nav-item nav-link active"
+                                : "nav-item nav-link"
+                        }
+                        style={adminBlockStyle}
+                        to="/entry"
+                    ><i className="far fa-id-card"></i> Entry
+                        </NavLink>
+                    <NavLink
+                        className={
+                            window.location.pathname === "/roster"
+                                ? "nav-item nav-link active"
+                                : "nav-item nav-link"
+                        }
+                        to="/roster"
+                    ><i className="far fa-eye"></i> Roster
+                        </NavLink>
+                    <NavLink
+                        className={
+                            window.location.pathname === "/edit"
+                                ? "nav-item nav-link active"
+                                : "nav-item nav-link"
+                        }
+                        to="/roster"
+                    ><i className="fas fa-user-edit"></i> Edit
+                        </NavLink>
+                    <NavLink
+                        className={
+                            window.location.pathname === "/logout"
+                                ? "nav-item nav-link active"
+                                : "nav-item nav-link"
+                        }
+                        to="/logout"
+                    ><i className="fas fa-sign-out-alt"></i> Logout
+                        </NavLink>
+                </div>
+            </div>
+        </nav>
+    );
+};
+
+export const LogOutNav = () => {
+
+    return (
+        <nav className="navbar navbar-expand-lg">
+            <NavLink className="navbar-brand" to="/logout">
+                <img src="super-logo.png" width="40" height="30" className="d-inline-block align-top" alt="" />
+                Super, inc.
+                <Clock />
+            </NavLink>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon fas fa-bars d-inline-block align-top"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div className="navbar-nav"></div>
             </div>
         </nav>
     );
@@ -77,13 +174,14 @@ export const HomeNav = () => {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg bg-light">
+        <nav className="navbar navbar-expand-lg">
             <NavLink className="navbar-brand" to="/">
                 <img src="super-logo.png" width="40" height="30" className="d-inline-block align-top" alt="" />
                 Super, inc.
-                    </NavLink>
+                <Clock />
+            </NavLink>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-p9aMOEr4WSEJ65jCyqU9AxrJtgK70wI7qzG7BdOGlSDthHcL" width="30" height="30" className="d-inline-block align-top" alt="" /></span>
+                <span width="30" height="30" className="navbar-toggler-icon fas fa-bars d-inline-block align-top"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
@@ -95,7 +193,7 @@ export const HomeNav = () => {
                                 : "nav-item nav-link"
                         }
                         to="/"
-                    >Home
+                    ><i className="fas fa-home"></i> Home
                         </NavLink>
                     <NavLink
                         className={
@@ -104,7 +202,7 @@ export const HomeNav = () => {
                                 : "nav-item nav-link"
                         }
                         to="/login"
-                    >Login
+                    ><i className="fas fa-sign-in-alt"></i> Login
                         </NavLink>
                 </div>
             </div>

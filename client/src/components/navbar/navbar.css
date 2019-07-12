@@ -1,0 +1,30 @@
+.navbar {
+    margin-bottom: 20px;
+    background: darkblue;
+    border-bottom: solid yellow;
+  }
+  
+.navbar .navbar-toggler-icon {
+    width: 40px;
+    color: yellow;
+  }
+  
+.nav-link {
+    color: rgba(245, 245, 245, 0.5);
+  }
+  
+.navbar-brand {
+    color: yellow;
+  }
+
+.navbar-brand:hover {
+    color: yellow;
+  }
+  
+.nav-link:hover {
+    color: yellow;
+  }
+  
+.active {
+    color: yellow;
+  }

@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import UserContext from '../components/userContext';
-import Title from '../components/title';
+import UserContext from '../components/context/userContext';
+import Title from '../components/title/title';
 import { PortalNav } from '../components/navbar';
+import { Col } from '../components/grid';
 import UseIdleTimer from '../components/windowEvents/useIdleTimer';
 
 const Portal = () => {
@@ -12,7 +13,7 @@ const Portal = () => {
     const adminInlineStyle = {
         ...user.permissions
             === 'Admin'
-            ? { display: 'inline' }
+            ? { display: 'inline-block' }
             : { display: 'none' }
     };
 
@@ -20,13 +21,28 @@ const Portal = () => {
         <div>
             <PortalNav />
             <UseIdleTimer />
-            <div className="col-md-6 offset-md-3">
+            <Col id="portalTitle">
                 <Title />
-                <h3>{user.firstName} is logged in as ({user.permissions})</h3>
-                <br />
-                <h4><Link to="/roster"><i className="far fa-eye"></i> View Employee Roster</Link></h4>
-                <h4 style={adminInlineStyle}><Link to="/entry"><i className="far fa-id-card"></i> Enter A New Record</Link></h4>
-            </div>
+                <div>
+                    <h3>Logged in as...
+                    <p>{user.firstName} {user.lastName} ({user.permissions})</p>
+                    </h3>
+                </div>
+                <div>
+                    <Link
+                        style={adminInlineStyle}
+                        className="btn btn-dark btn-lg"
+                        to="/entry">
+                        <span className="far fa-id-card fa-fw"></span>New Record
+                    </Link>
+                    &nbsp;
+                    <Link
+                        className="btn btn-dark btn-lg"
+                        to="/roster">
+                        <span className="far fa-eye fa-fw"></span>View Roster
+                    </Link>
+                </div>
+            </Col>
         </div>
     );
 }

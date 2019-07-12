@@ -1,16 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import UserContext from '../components/userContext';
-import moment from 'moment';
+import { Redirect } from 'react-router-dom';
+import UserContext from '../components/context/userContext';
+import EditUserContext from '../components/context/editUserContext';
 import API from '../utils/API';
-import Title from '../components/title';
+import Title from '../components/title/title';
 import { PortalNav } from '../components/navbar';
+import { Col } from '../components/grid';
 import UseIdleTimer from '../components/windowEvents/useIdleTimer';
-import { 
-    UserCardHeader, 
-    UserCardItem, 
-    UserCardSpan, 
-    DeleteBtn 
-} from '../components/card';
+import { UserCardHeader, UserCardItem, UserCardSpan, DeleteBtn,ConfirmBtn,EditBtn } from '../components/card';
 
 
 const Roster = () => {
@@ -19,10 +16,22 @@ const Roster = () => {
 
     const [users, setUsers] = useState([]);
 
-    const adminBlockStyle = {
+    const { setEditUser } = useContext(EditUserContext);
+
+    const [toEdit, setToEdit] = useState(false);
+
+    const reviseUser = roster => {
+        setEditUser(roster);
+        setTimeout(() => {
+            setToEdit(true)
+        }, 2000);
+
+    };
+
+    const adminInlineStyle = {
         ...user.permissions
             === 'Admin'
-            ? { display: 'block' }
+            ? { display: 'inline' }
             : { display: 'none' }
     };
 
@@ -42,12 +51,16 @@ const Roster = () => {
         loadRoster();
     }, []);
 
+    if (toEdit === true) {
+        return <Redirect to="/edit" />
+    }
+
     return (
         <div>
             <PortalNav />
             <UseIdleTimer />
             {users && (
-                <div className="users container col-md-6 offset-md-3">
+                <Col>
                     <Title />
                     <h2>Employee Roster</h2>
                     {users.map(roster => (
@@ -63,6 +76,13 @@ const Roster = () => {
                                         <UserCardSpan>
                                         &nbsp;
                                         {roster._id}
+                                    </UserCardSpan>
+                                </UserCardItem>
+                                <UserCardItem>
+                                    Phone#:
+                                        <UserCardSpan>
+                                        &nbsp;
+                                        {roster.phone}
                                     </UserCardSpan>
                                 </UserCardItem>
                                 <UserCardItem>
@@ -90,7 +110,7 @@ const Roster = () => {
                                     Hire Date:
                                         <UserCardSpan>
                                         &nbsp;
-                                        {moment(roster.date).format('MM/D/YYYY')}
+                                        {roster.date}
                                     </UserCardSpan>
                                 </UserCardItem>
                                 <UserCardItem>
@@ -100,39 +120,42 @@ const Roster = () => {
                                     </UserCardSpan>
                                 </UserCardItem>
                                 <DeleteBtn
-                                    className="btn btn-danger btn-sm"
-                                    style={adminBlockStyle}
+                                    style={adminInlineStyle}
                                     data-toggle="collapse"
                                     data-target={`#collapse${roster.username}`}
                                     aria-expanded="false"
                                     aria-controls={`collapse ${roster.username}`}
-                                >Delete Record
+                                ><i className="fas fa-trash-alt"></i> Delete Record
                                 </DeleteBtn>
-                                <br />
-                                <div id={`collapse${roster.username}`} className="collapse">
+                                &nbsp;
+                                <EditBtn
+                                    className="btn btn-info btn-sm"
+                                    style={adminInlineStyle}
+                                    onClick={() => reviseUser(roster)}
+                                ><i className="fas fa-user-edit"></i> Edit Record
+                                </EditBtn>
+                                <div id={`collapse${roster.username}`} className="collapse" style={{ marginTop: 10 }}>
                                     <strong>Are you sure you want to delete {roster.firstName} {roster.lastName}?</strong>
                                     <div className="text-right">
-                                        <DeleteBtn
-                                            className="btn btn-success btn-md"
+                                        <ConfirmBtn
                                             onClick={() => deleteUser(roster._id)}
-                                        >Yes
-                                    </DeleteBtn>
+                                        ><i className="fas fa-check fa-fw"></i>
+                                    </ConfirmBtn>
                                         &nbsp;
                                         &nbsp;
                                     <DeleteBtn
-                                            className="btn btn-danger btn-md"
                                             data-toggle="collapse"
                                             data-target={`#collapse${roster.username}`}
                                             aria-expanded="false"
                                             aria-controls={`collapse ${roster.username}`}
-                                        >No
+                                        ><i className="fas fa-times fa-fw"></i>
                                     </DeleteBtn>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     ))}
-                </div>
+                </Col>
             )}
         </div>
     );

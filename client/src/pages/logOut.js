@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-import UserContext from '../components/userContext';
-import Title from '../components/title';
-import { HomeNav } from '../components/navbar';
+import UserContext from '../components/context/userContext';
+import Title from '../components/title/title';
+import { LogOutNav } from '../components/navbar';
+import { Col } from '../components/grid';
 import API from '../utils/API';
 
 const LogOut = () => {
@@ -21,9 +22,11 @@ const LogOut = () => {
 
         return (
             <div>
-                <HomeNav />
+                <LogOutNav />
+                <Col>
                 <Title />
                 <h2>Logging Out...</h2>
+                </Col>
             </div>
         );
     };

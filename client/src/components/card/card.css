@@ -1,0 +1,9 @@
+.card {
+    margin: 20px;
+  }
+
+.card-header {
+    color: yellow;
+    background: darkblue;
+    border: solid yellow;
+  }
