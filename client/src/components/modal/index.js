@@ -3,7 +3,7 @@ import './modal.css';
 
 export const ModalFade = ({ children }) => {
     return (
-        <div className="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div className="modal fade">
             {children}
         </div>
     );
@@ -11,7 +11,7 @@ export const ModalFade = ({ children }) => {
 
 export const ModalDialog = ({ children }) => {
     return (
-        <div className="modal-dialog modal-dialog-centered" role="document">
+        <div className="modal-dialog modal-dialog-centered">
             {children}
         </div>
     );
@@ -25,13 +25,10 @@ export const ModalContent = ({ children }) => {
     );
 };
 
-export const ModalHeader = () => {
+export const ModalHeader = ({ children }) => {
     return (
         <div className="modal-header">
-            <h4 className="modal-title" id="exampleModalCenterTitle">Confirm Delete</h4>
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span style={{ color: "yellow" }} aria-hidden="true">&times;</span>
-            </button>
+            {children}
         </div>
     );
 };
