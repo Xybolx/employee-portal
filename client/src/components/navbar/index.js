@@ -166,13 +166,6 @@ export const LogOutNav = () => {
 
 export const HomeNav = () => {
 
-    const logOutNavStyle = {
-        ...window.location.pathname
-            === '/logout'
-            ? { display: 'none' }
-            : { display: 'block' }
-    };
-
     return (
         <nav className="navbar navbar-expand-lg">
             <NavLink className="navbar-brand" to="/">
@@ -186,9 +179,8 @@ export const HomeNav = () => {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                     <NavLink
-                        style={logOutNavStyle}
                         className={
-                            window.location.pathname === "/"
+                            window.location.pathname !== "/login"
                                 ? "nav-item nav-link active"
                                 : "nav-item nav-link"
                         }
