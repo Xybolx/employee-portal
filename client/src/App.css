@@ -15,3 +15,9 @@ button:hover {
 #portalTitle {
   margin-top: 5%;
 }
+
+.modal-header {
+  background: darkblue;
+  border: solid yellow;
+  color: yellow;
+}
