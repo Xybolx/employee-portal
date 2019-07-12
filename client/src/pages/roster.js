@@ -138,7 +138,7 @@ const Roster = () => {
                                             <div className="modal-header">
                                                 <h4 className="modal-title" id="exampleModalCenterTitle">Confirm Delete</h4>
                                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true"><i className="fas fa-times"></i></span>
+                                                    <span style={{ color: "yellow" }} aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div className="modal-body">
