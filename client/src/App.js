@@ -44,13 +44,7 @@ const App = () => {
                 )
             )} />
             <Route exact path='/logout' component={LogOut} />
-            <Route exact path="/entry" render={() => (
-              value.user !== null && value.user !== "" ? (
-                <Entry />
-                ) : (
-                  <Redirect to="/logout" />
-                )
-            )} />
+            <Route exact path="/entry" component={Entry} />
             <Route exact path="/edit" render={() => (
               value.user !== null && value.user !== "" ? (
                 <Edit />
