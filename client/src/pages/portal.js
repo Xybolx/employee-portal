@@ -10,10 +10,10 @@ const Portal = () => {
 
     const { user } = useContext(UserContext);
 
-    const adminInlineStyle = {
+    const adminBlockStyle = {
         ...user.permissions
             === 'Admin'
-            ? { display: 'inline-block' }
+            ? { display: 'block' }
             : { display: 'none' }
     };
 
@@ -29,18 +29,20 @@ const Portal = () => {
                     </h3>
                 </div>
                 <div>
-                    <Link
-                        style={adminInlineStyle}
-                        className="btn btn-dark btn-lg"
-                        to="/entry">
-                        <span className="far fa-id-card fa-fw"></span>New Record
-                    </Link>
+                    <h4 style={adminBlockStyle}>
+                        <Link
+                            to="/entry">
+                            <span className="far fa-id-card fa-fw"></span>
+                            New Record
+                            </Link>
+                    </h4>
                     &nbsp;
-                    <Link
-                        className="btn btn-dark btn-lg"
-                        to="/roster">
-                        <span className="far fa-eye fa-fw"></span>View Roster
-                    </Link>
+                    <h4>
+                        <Link to="/roster">
+                            <span className="far fa-eye fa-fw"></span>
+                            View Roster
+                            </Link>
+                    </h4>
                 </div>
             </Col>
         </div>
