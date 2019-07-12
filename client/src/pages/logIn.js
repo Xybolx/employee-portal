@@ -15,30 +15,21 @@ const LogIn = () => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const [userEmail, setUserEmail] = useState('');
-
     const handleFormSubmit = ev => {
         ev.preventDefault();
         if (values.email && values.password) {
-                userLogIn();
-                loadUser();
+            API.logIn({
+                email: values.email,
+                password: values.password
+            })
+                .then(res => loadUser())
+                .then(() => userSet())
+                .catch(err => console.log(err))
         }
     };
 
-    const userLogIn = async () => {
-        API.logIn({
-            email: values.email,
-            password: values.password
-        })
-        .then(res => setUserEmail(res.data.email))
-        return {
-            userEmail
-        }   
-    };
-
     const loadUser = async () => {
-        const userEmail = await userLogIn();
-        API.getUser(userEmail)
+        API.getUser()
             .then(res => setUser(res.data))
             .catch(err => console.log(err))
         return {
@@ -47,8 +38,6 @@ const LogIn = () => {
     };
 
     const userSet = async () => {
-        const user = await loadUser();
-        setUser(user);
         setTimeout(() => setIsLoggedIn(true), 1000);
     };
 
@@ -90,7 +79,6 @@ const LogIn = () => {
                     />
                     <FormBtn
                         type="submit"
-                        onClick={userSet}
                         disabled={
                             !(values.email && values.password)}>
                         <i className="fas fa-sign-in-alt"></i> Login
