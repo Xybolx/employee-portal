@@ -7,6 +7,7 @@ import Title from '../components/title/title';
 import { PortalNav } from '../components/navbar';
 import { Col } from '../components/grid';
 import UseIdleTimer from '../components/windowEvents/useIdleTimer';
+import { ModalFade, ModalDialog, ModalContent, ModalHeader, ModalBody, ModalFooter } from '../components/modal';
 import { UserCardHeader, UserCardItem, UserCardSpan, DeleteBtn, ConfirmBtn, EditBtn } from '../components/card';
 
 
@@ -163,28 +164,20 @@ const Roster = () => {
                                     onClick={() => reviseUser(roster)}
                                 ><i className="fas fa-user-edit"></i> Edit Record
                                 </EditBtn>
-                                <div className="modal fade" id={`exampleModalCenter${roster.username}`} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div className="modal-dialog modal-dialog-centered" role="document">
-                                        <div className="modal-content">
-                                            <div class="modal-header">
-                                                <h5 className="modal-title" id="exampleModalCenterTitle">Confirm Delete</h5>
-                                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div className="modal-body">
-                                                Are you sure you want to delete {roster.firstName} {roster.lastName} ?
-                                            </div>
-                                            <div class="modal-footer">
+                                <ModalFade id={`exampleModalCenter${roster.username}`}>
+                                    <ModalDialog>
+                                        <ModalContent>
+                                            <ModalHeader />
+                                            <ModalBody>
+                                                <strong>Are you sure you want to delete {roster.firstName} {roster.lastName}?</strong>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <DeleteBtn data-dismiss="modal"><i className="fas fa-times fa-fw"></i></DeleteBtn>
                                                 <ConfirmBtn onClick={() => deleteUser(roster._id)}><i className="fas fa-check fa-fw"></i></ConfirmBtn>
-                                                <DeleteBtn
-                                                    data-dismiss="modal"
-                                                ><i className="fas fa-times fa-fw"></i>
-                                                </DeleteBtn>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            </ModalFooter>
+                                        </ModalContent>
+                                    </ModalDialog>
+                                </ModalFade>
                             </div>
                         </div>
                     ))}
