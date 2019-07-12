@@ -7,7 +7,7 @@ import Title from '../components/title/title';
 import { PortalNav } from '../components/navbar';
 import { Col } from '../components/grid';
 import UseIdleTimer from '../components/windowEvents/useIdleTimer';
-import { UserCardHeader, UserCardItem, UserCardSpan, DeleteBtn,ConfirmBtn,EditBtn } from '../components/card';
+import { UserCardHeader, UserCardItem, UserCardSpan, DeleteBtn, ConfirmBtn, EditBtn } from '../components/card';
 
 
 const Roster = () => {
@@ -119,7 +119,7 @@ const Roster = () => {
                                         &nbsp;{roster.permissions}
                                     </UserCardSpan>
                                 </UserCardItem>
-                                <DeleteBtn
+                                {/* <DeleteBtn
                                     style={adminInlineStyle}
                                     data-toggle="collapse"
                                     data-target={`#collapse${roster.username}`}
@@ -149,7 +149,40 @@ const Roster = () => {
                                             aria-expanded="false"
                                             aria-controls={`collapse ${roster.username}`}
                                         ><i className="fas fa-times fa-fw"></i>
-                                    </DeleteBtn>
+                                    </DeleteBtn> */}
+                                <DeleteBtn
+                                    style={adminInlineStyle}
+                                    data-toggle="modal"
+                                    data-target={`#exampleModalCenter${roster.username}`}
+                                ><i className="fas fa-trash-alt"></i> Delete Record
+                                </DeleteBtn>
+                                &nbsp;
+                                <EditBtn
+                                    className="btn btn-info btn-sm"
+                                    style={adminInlineStyle}
+                                    onClick={() => reviseUser(roster)}
+                                ><i className="fas fa-user-edit"></i> Edit Record
+                                </EditBtn>
+                                <div className="modal fade" id={`exampleModalCenter${roster.username}`} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div className="modal-dialog modal-dialog-centered" role="document">
+                                        <div className="modal-content">
+                                            <div class="modal-header">
+                                                <h5 className="modal-title" id="exampleModalCenterTitle">Confirm Delete</h5>
+                                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div className="modal-body">
+                                                Are you sure you want to delete {roster.firstName} {roster.lastName} ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <ConfirmBtn onClick={() => deleteUser(roster._id)}><i className="fas fa-check fa-fw"></i></ConfirmBtn>
+                                                <DeleteBtn
+                                                    data-dismiss="modal"
+                                                ><i className="fas fa-times fa-fw"></i>
+                                                </DeleteBtn>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
