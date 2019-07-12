@@ -1,33 +1,33 @@
 import React from 'react';
 import './modal.css';
 
-export const ModalFade = ({ children }) => {
+export const ModalFade = ({children}, props) => {
     return (
-        <div className="modal fade">
+        <div {...props} className="modal fade">
             {children}
         </div>
     );
 };
 
-export const ModalDialog = ({ children }) => {
+export const ModalDialog = ({children}, props) => {
     return (
-        <div className="modal-dialog modal-dialog-centered">
+        <div {...props} className="modal-dialog modal-dialog-centered">
             {children}
         </div>
     );
 };
 
-export const ModalContent = ({ children }) => {
+export const ModalContent = ({children}, props) => {
     return (
-        <div className="modal-content">
+        <div {...props} className="modal-content">
             {children}
         </div>
     );
 };
 
-export const ModalHeader = ({ children }) => {
+export const ModalHeader = ({children}, props) => {
     return (
-        <div className="modal-header">
+        <div {...props} className="modal-header">
             {children}
         </div>
     );
