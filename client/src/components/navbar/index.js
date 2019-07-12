@@ -179,12 +179,12 @@ export const HomeNav = () => {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                     <NavLink
-                        className={
-                            window.location.pathname !== "/login"
-                                ? "nav-item nav-link active"
-                                : "nav-item nav-link"
-                        }
-                        to="/"
+                        exact to="/"
+                        className="nav-item nav-link"
+                        activeClassName="active"
+                        activeStyle={{
+                            color: "yellow"
+                        }}
                     ><i className="fas fa-home"></i> Home
                         </NavLink>
                     <NavLink
