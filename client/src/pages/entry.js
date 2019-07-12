@@ -56,7 +56,7 @@ const Entry = () => {
 
     return (
         <div>
-            {/* <PortalNav /> */}
+            <PortalNav />
             <UseIdleTimer />
             <Col>
                 <Title />
