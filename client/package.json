@@ -2,6 +2,9 @@
   "name": "employee-portal",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "8.12.0"
+  },
   "dependencies": {
     "moment": "^2.24.0",
     "react": "^16.8.6",
