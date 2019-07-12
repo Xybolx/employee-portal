@@ -15,19 +15,30 @@ const LogIn = () => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    const [userEmail, setUserEmail] = useState('');
+
     const handleFormSubmit = ev => {
         ev.preventDefault();
         if (values.email && values.password) {
-            API.logIn({
-                email: values.email,
-                password: values.password
-            })
-                .then(res => loadUser())
+                userLogIn();
+                loadUser();
         }
     };
 
+    const userLogIn = async () => {
+        API.logIn({
+            email: values.email,
+            password: values.password
+        })
+        .then(res => setUserEmail(res.data.email))
+        return {
+            userEmail
+        }   
+    };
+
     const loadUser = async () => {
-        API.getUser(values.email)
+        const userEmail = await userLogIn();
+        API.getUser(userEmail)
             .then(res => setUser(res.data))
             .catch(err => console.log(err))
         return {
