@@ -7,7 +7,6 @@ import Title from '../components/title/title';
 import { PortalNav } from '../components/navbar';
 import { Col } from '../components/grid';
 import UseIdleTimer from '../components/windowEvents/useIdleTimer';
-import { ModalFade, ModalDialog, ModalContent, ModalHeader, ModalBody, ModalFooter } from '../components/modal';
 import { UserCardHeader, UserCardItem, UserCardSpan, DeleteBtn, ConfirmBtn, EditBtn } from '../components/card';
 
 
@@ -128,29 +127,30 @@ const Roster = () => {
                                 </DeleteBtn>
                                 &nbsp;
                                 <EditBtn
+                                    className="btn btn-info btn-sm"
                                     style={adminInlineStyle}
                                     onClick={() => reviseUser(roster)}
                                 ><i className="fas fa-user-edit"></i> Edit Record
                                 </EditBtn>
-                                <ModalFade id={`exampleModalCenter${roster.username}`} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <ModalDialog role="document">
-                                        <ModalContent>
-                                            <ModalHeader>
+                                <div className="modal fade" id={`exampleModalCenter${roster.username}`} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div className="modal-dialog modal-dialog-centered" role="document">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
                                                 <h4 className="modal-title" id="exampleModalCenterTitle">Confirm Delete</h4>
                                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                                     <span style={{ color: "yellow" }} aria-hidden="true">&times;</span>
                                                 </button>
-                                            </ModalHeader>
-                                            <ModalBody>
+                                            </div>
+                                            <div className="modal-body">
                                                 <strong>Are you sure you want to delete {roster.firstName} {roster.lastName}?</strong>
-                                            </ModalBody>
-                                            <ModalFooter>
+                                            </div>
+                                            <div className="modal-footer">
                                                 <DeleteBtn data-dismiss="modal"><i className="fas fa-times fa-fw"></i></DeleteBtn>
                                                 <ConfirmBtn data-dismiss="modal" onClick={() => deleteUser(roster._id)}><i className="fas fa-check fa-fw"></i></ConfirmBtn>
-                                            </ModalFooter>
-                                        </ModalContent>
-                                    </ModalDialog>
-                                </ModalFade>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     ))}
