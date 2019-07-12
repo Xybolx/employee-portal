@@ -6,26 +6,28 @@ SALT_WORK_FACTOR = 10;
 const userSchema = new Schema({
   email: {
     type: String,
-    required: true,
+    required:  [true, 'Email is required!'],
     index: {
       unique: true
-    }
+    },
+    match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
   },
   firstName: {
     type: String,
-    required: true
+    required:  [true, 'First name is required!'],
   },
   lastName: {
     type: String,
-    required: true
+    required:  [true, 'Last name is required!'],
   },
   username: {
     type: String,
-    required: true
+    required:  [true, 'Username is required!'],
   },
   password: { 
     type: String, 
-    required: true 
+    required:  [true, 'Password is required!'],
+    minlength: [6, "Must be at least 6 characters long!"]
   },
   position: {
       type: String,
@@ -37,7 +39,8 @@ const userSchema = new Schema({
   },
   phone: {
     type: String,
-    required: true
+    required: [true, 'Phone number is required!'],
+    match: [/\d{3}-\d{3}-\d{4}/, "Please enter a valid phone number!"]
   },
   date: {
     type: String,
