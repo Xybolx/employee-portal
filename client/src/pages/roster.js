@@ -146,7 +146,7 @@ const Roster = () => {
                                             </div>
                                             <div className="modal-footer">
                                                 <DeleteBtn data-dismiss="modal"><i className="fas fa-times fa-fw"></i></DeleteBtn>
-                                                <ConfirmBtn onClick={() => deleteUser(roster._id)}><i className="fas fa-check fa-fw"></i></ConfirmBtn>
+                                                <ConfirmBtn data-dismiss="modal" onClick={() => deleteUser(roster._id)}><i className="fas fa-check fa-fw"></i></ConfirmBtn>
                                             </div>
                                         </div>
                                     </div>

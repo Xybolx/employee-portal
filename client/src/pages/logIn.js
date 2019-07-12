@@ -27,7 +27,7 @@ const LogIn = () => {
     };
 
     const loadUser = async () => {
-        API.getUser()
+        API.getUser(values.email)
             .then(res => setUser(res.data))
             .catch(err => console.log(err))
         return {
