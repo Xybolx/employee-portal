@@ -13,6 +13,7 @@ const Home = () => {
                 <Title />
                 <h2>Employee Portal</h2>
                 <h3><Link to="/login"><i className="fas fa-sign-in-alt"></i> Login</Link>&nbsp;to access</h3>
+                <Link to="/entry">Entry</Link>
             </Col>
         </div>
     );
