@@ -36,7 +36,6 @@ const Portal = () => {
                             New Record
                             </Link>
                     </h4>
-                    &nbsp;
                     <h4>
                         <Link to="/roster">
                             <span className="far fa-eye fa-fw"></span>
