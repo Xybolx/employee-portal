@@ -132,7 +132,7 @@ const Roster = () => {
                                     onClick={() => reviseUser(roster)}
                                 ><i className="fas fa-user-edit"></i> Edit Record
                                 </EditBtn>
-                                <div className="modal fade" id={`exampleModalCenter${roster.username}`} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div className="modal fade" id={`exampleModalCenter${roster.username}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div className="modal-dialog modal-dialog-centered" role="document">
                                         <div className="modal-content">
                                             <div className="modal-header">
