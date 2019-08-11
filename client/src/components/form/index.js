@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './form.css';
 
 export const useForm = (initialValues) => {
@@ -8,9 +7,10 @@ export const useForm = (initialValues) => {
     return [
         values,
         ev => {
+          const {name, value} = ev.target;
             setValues({
                 ...values,
-                [ev.target.name]: ev.target.value
+                [name]: value
             });
         }
     ];

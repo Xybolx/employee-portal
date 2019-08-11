@@ -1,5 +1,5 @@
 .card {
-    margin: 20px;
+    margin-top: 20px;
   }
 
 .card-header {
@@ -9,5 +9,5 @@
   }
 
   .text-muted {
-    font-size: 15px;
+    padding-right: 10px;
   }

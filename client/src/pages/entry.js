@@ -152,7 +152,7 @@ const Entry = () => {
                     </Label>
                     <Input
                         name="date"
-                        type="text"
+                        type="date"
                         placeholder="MM/DD/YYYY"
                         value={values.date}
                         onChange={handleChange}
